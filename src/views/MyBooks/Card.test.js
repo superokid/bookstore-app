@@ -18,7 +18,7 @@ describe('MyBook <Card />', () => {
         }}
       />,
     );
-    getByText(/Unsold/);
+    getByText(/Sold/);
   });
 
   it('render sold', () => {
@@ -29,6 +29,6 @@ describe('MyBook <Card />', () => {
         }}
       />,
     );
-    getByText(/Sold/);
+    getByText(/Unsold/);
   });
 });

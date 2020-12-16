@@ -1,13 +1,14 @@
 import { Dispatch } from 'redux';
 import { GET_BOOKS, GetBooksParams } from './type';
-import { mock } from '../../../mockData';
+import { getMock } from '../../../mockData';
 
 export const getBooks = (params: GetBooksParams) => async (dispatch: Dispatch) => {
   dispatch({ type: GET_BOOKS.request });
   try {
+    const payload = getMock(params);
     dispatch({
       type: GET_BOOKS.success,
-      payload: mock,
+      payload,
     });
   } catch (err) {
     dispatch({ type: GET_BOOKS.error });

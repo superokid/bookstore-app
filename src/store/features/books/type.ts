@@ -23,6 +23,9 @@ interface SetModalAction {
 }
 
 export interface GetBooksParams {
+  filter?: {
+    isSold: boolean;
+  };
   size?: number;
   page?: number;
 }

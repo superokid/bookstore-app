@@ -17,7 +17,7 @@ const tabs = [
     heading: 'Sold',
   },
   {
-    heading: 'UnSold',
+    heading: 'Unsold',
   },
 ];
 
@@ -36,8 +36,28 @@ const MyBooks: React.FC<Props> = () => {
 
   const renderItem = ({ item }: { item: Book }) => <Card item={item} />;
 
+  const getFilter = (i: number) => {
+    if (i === 1) {
+      return { isSold: true };
+    } else if (i === 2) {
+      return { isSold: false };
+    }
+    return undefined;
+  };
+
   return (
-    <Tabs locked tabBarUnderlineStyle={styles.tabUnderline}>
+    <Tabs
+      locked
+      tabBarUnderlineStyle={styles.tabUnderline}
+      onChangeTab={({ i }: { i: number }) => {
+        dispatch(
+          getBooks({
+            filter: getFilter(i),
+            size: 5,
+            page: 1,
+          }),
+        );
+      }}>
       {tabs.map((tab) => {
         return (
           <Tab

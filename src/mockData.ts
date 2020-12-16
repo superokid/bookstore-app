@@ -1,4 +1,5 @@
 import { Image, ImageSourcePropType } from 'react-native';
+import { GetBooksParams, Books } from 'store/features/books';
 
 import img1 from 'assets/images/book/1.png';
 import img2 from 'assets/images/book/2.png';
@@ -52,3 +53,14 @@ export const mock = [
     isSold: false,
   },
 ];
+
+export const getMock = (params: GetBooksParams): Books => {
+  const { filter } = params || {};
+  if (filter?.isSold) {
+    return mock.filter((item) => item.isSold);
+  }
+  if (filter?.isSold === false) {
+    return mock.filter((item) => item.isSold === false);
+  }
+  return mock;
+};

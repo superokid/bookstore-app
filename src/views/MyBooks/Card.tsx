@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({ item }) => {
       }}>
       <Image style={styles.image} source={{ uri: image }} resizeMode="cover" />
       <View style={styles.descContainer}>
-        <Label color={isSold ? '#00dcb5' : '#ff3e72'}>{isSold ? 'Unsold' : 'Sold'}</Label>
+        <Label color={isSold ? '#00dcb5' : '#ff3e72'}>{isSold ? 'Sold' : 'Unsold'}</Label>
         <Spacing size={10} />
         <Text style={styles.title}>{title}</Text>
         <Spacing size={5} />
