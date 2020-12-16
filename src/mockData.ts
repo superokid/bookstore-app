@@ -55,12 +55,20 @@ export const mock = [
 ];
 
 export const getMock = (params: GetBooksParams): Books => {
-  const { filter } = params || {};
+  const { filter, search = '' } = params || {};
   if (filter?.isSold) {
     return mock.filter((item) => item.isSold);
   }
   if (filter?.isSold === false) {
     return mock.filter((item) => item.isSold === false);
+  }
+  if (search) {
+    const searchText = search.toLowerCase();
+    return mock.filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchText) ||
+        item.author.toLowerCase().includes(searchText),
+    );
   }
   return mock;
 };

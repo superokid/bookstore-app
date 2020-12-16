@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './Header';
-import Card from './Card';
 import { ReduxState } from 'store';
-import { getBooks, Books, Book } from 'store/features/books';
+import { getBooks, Books } from 'store/features/books';
+import BookResult from '../Shared/BookResult';
 
 interface Props {}
 
@@ -35,8 +35,6 @@ const MyBooks: React.FC<Props> = () => {
     );
   }, []);
 
-  const renderItem = ({ item }: { item: Book }) => <Card item={item} />;
-
   const getFilter = (i: number) => {
     if (i === 1) {
       return { isSold: true };
@@ -48,9 +46,10 @@ const MyBooks: React.FC<Props> = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <Tabs
         locked
+        tabContainerStyle={styles.tabContainerStyle}
         tabBarUnderlineStyle={styles.tabUnderline}
         onChangeTab={({ i }: { i: number }) => {
           dispatch(
@@ -70,11 +69,7 @@ const MyBooks: React.FC<Props> = () => {
               textStyle={styles.textStyle}
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}>
-              <FlatList
-                data={books}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-              />
+              <BookResult books={books} />
             </Tab>
           );
         })}
@@ -86,6 +81,11 @@ const MyBooks: React.FC<Props> = () => {
 export default MyBooks;
 
 const styles = StyleSheet.create({
+  tabContainerStyle: {
+    elevation: 0,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
   tabUnderline: {
     backgroundColor: '#000',
   },

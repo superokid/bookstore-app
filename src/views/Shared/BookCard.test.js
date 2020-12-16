@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Component from './Card';
+import Component from './BookCard';
 import { mock } from '../../mockData';
 
-describe('MyBook <Card />', () => {
+describe('<BookCard />', () => {
   it('render content', () => {
     const { getByText } = render(<Component item={mock[0]} />);
     expect(getByText(mock[0].title)).toBeTruthy();

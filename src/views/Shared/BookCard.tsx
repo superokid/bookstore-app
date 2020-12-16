@@ -1,23 +1,18 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { Text } from 'native-base';
 import { Spacing, Label } from 'components';
 import { Book } from 'store/features/books';
 
 interface Props {
   item: Book;
+  onPress: () => void;
 }
 
-const Card: React.FC<Props> = ({ item }) => {
+const Card: React.FC<Props> = ({ item, onPress }) => {
   const { image, title, author, isSold } = item;
-  const navigation = useNavigation();
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => {
-        navigation.navigate('BookDetail', item);
-      }}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image style={styles.image} source={{ uri: image }} resizeMode="cover" />
       <View style={styles.descContainer}>
         <Label color={isSold ? '#00dcb5' : '#ff3e72'}>{isSold ? 'Sold' : 'Unsold'}</Label>
