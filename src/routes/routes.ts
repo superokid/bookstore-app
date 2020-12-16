@@ -6,7 +6,7 @@ const routes = [
     name: 'MyBooks',
     component: MyBooks,
     options: {
-      title: 'My Books',
+      headerShown: false,
     },
   },
   {

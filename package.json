@@ -21,6 +21,8 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.16.1",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-transformer": "^0.14.3",
     "react-redux": "^7.1.12",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
@@ -61,6 +63,9 @@
     "setupFiles": [
       "./src/test/jest-config.js",
       "./node_modules/react-native-gesture-handler/jestSetup.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(svg)$": "<rootDir>/src/test/svgMock.js"
+    }
   }
 }

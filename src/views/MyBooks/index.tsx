@@ -3,6 +3,7 @@ import { FlatList, StyleSheet } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Header from './Header';
 import Card from './Card';
 import { ReduxState } from 'store';
 import { getBooks, Books, Book } from 'store/features/books';
@@ -46,36 +47,39 @@ const MyBooks: React.FC<Props> = () => {
   };
 
   return (
-    <Tabs
-      locked
-      tabBarUnderlineStyle={styles.tabUnderline}
-      onChangeTab={({ i }: { i: number }) => {
-        dispatch(
-          getBooks({
-            filter: getFilter(i),
-            size: 5,
-            page: 1,
-          }),
-        );
-      }}>
-      {tabs.map((tab) => {
-        return (
-          <Tab
-            key={tab.heading}
-            heading={tab.heading}
-            tabStyle={styles.tabStyle}
-            textStyle={styles.textStyle}
-            activeTabStyle={styles.activeTabStyle}
-            activeTextStyle={styles.activeTextStyle}>
-            <FlatList
-              data={books}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.id.toString()}
-            />
-          </Tab>
-        );
-      })}
-    </Tabs>
+    <>
+      <Header></Header>
+      <Tabs
+        locked
+        tabBarUnderlineStyle={styles.tabUnderline}
+        onChangeTab={({ i }: { i: number }) => {
+          dispatch(
+            getBooks({
+              filter: getFilter(i),
+              size: 5,
+              page: 1,
+            }),
+          );
+        }}>
+        {tabs.map((tab) => {
+          return (
+            <Tab
+              key={tab.heading}
+              heading={tab.heading}
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}>
+              <FlatList
+                data={books}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id.toString()}
+              />
+            </Tab>
+          );
+        })}
+      </Tabs>
+    </>
   );
 };
 
