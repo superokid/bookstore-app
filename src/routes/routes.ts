@@ -3,14 +3,14 @@ import BookDetail from '../views/BookDetail';
 
 const routes = [
   {
-    name: 'myBooks',
+    name: 'MyBooks',
     component: MyBooks,
     options: {
       title: 'My Books',
     },
   },
   {
-    name: 'bookDetail',
+    name: 'BookDetail',
     component: BookDetail,
   },
 ];

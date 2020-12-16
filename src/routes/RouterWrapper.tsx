@@ -13,7 +13,7 @@ const RouterWrapper = (props: Props) => {
   return (
     <Container>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="myBooks">
+        <Stack.Navigator initialRouteName="MyBooks">
           {routes.map((route) => {
             return <Stack.Screen {...route} key={route.name} />;
           })}

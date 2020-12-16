@@ -1,19 +1,34 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import Component from './Card';
+import { mock } from '../../mockData';
 
-describe('MyBook Card', () => {
-  const item = {
-    id: 1,
-    image: '',
-    title: 'The Kinfolk Home: Interiors for Slow Living',
-    author: 'William, Nathan',
-    isSold: false,
-  };
-
+describe('MyBook <Card />', () => {
   it('render content', () => {
-    const { getByText } = render(<Component item={item} />);
-    expect(getByText(item.title)).toBeTruthy();
-    expect(getByText(item.author)).toBeTruthy();
+    const { getByText } = render(<Component item={mock[0]} />);
+    expect(getByText(mock[0].title)).toBeTruthy();
+    expect(getByText(mock[0].author)).toBeTruthy();
+  });
+
+  it('render unsold', () => {
+    const { getByText } = render(
+      <Component
+        item={{
+          isSold: true,
+        }}
+      />,
+    );
+    getByText(/Unsold/);
+  });
+
+  it('render sold', () => {
+    const { getByText } = render(
+      <Component
+        item={{
+          isSold: false,
+        }}
+      />,
+    );
+    getByText(/Sold/);
   });
 });

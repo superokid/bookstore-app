@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
 
 import {
   Header,
@@ -19,16 +20,19 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import RouterWrapper from './routes/RouterWrapper';
+import { store } from './store';
 
 declare const global: { HermesInternal: null | {} };
 
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{ flex: 1 }}>
-        <RouterWrapper />
-      </SafeAreaView>
+      <Provider store={store}>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView style={{ flex: 1 }}>
+          <RouterWrapper />
+        </SafeAreaView>
+      </Provider>
     </>
   );
 };
