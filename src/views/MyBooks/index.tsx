@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from './Header';
+import { Header } from 'components';
 import { ReduxState } from 'store';
 import { getBooks, Books } from 'store/features/books';
 import BookResult from '../Shared/BookResult';
@@ -46,7 +46,7 @@ const MyBooks: React.FC<Props> = () => {
 
   return (
     <>
-      <Header />
+      <Header type="search" title="My Books" location="BookSearch" />
       <Tabs
         locked
         tabContainerStyle={styles.tabContainerStyle}

@@ -14,4 +14,9 @@ const TextCurrency: React.FC<Props> = ({ currency, amount }) => {
   );
 };
 
+TextCurrency.defaultProps = {
+  currency: '',
+  amount: 0,
+};
+
 export default TextCurrency;
