@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Image, useWindowDimensions } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import { Content } from 'native-base';
 import { BookDetailProps } from 'routes/type';
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'react-native-scalable-image';
 
 import { Text, LabelSold, Spacing } from 'components';
 import TextCurrency from 'components/TextCurrency';
@@ -17,7 +18,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ route }) => {
   const bookDetail = useSelector<ReduxState, Book>((state) => state.books.bookDetail);
   const { title, author, currency, price, isSold, image } = bookDetail || {};
   const { id } = route.params;
-  const { height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     dispatch(getBookDetail(id));
@@ -25,7 +26,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ route }) => {
 
   return (
     <Content>
-      <Image style={[styles.image]} source={{ uri: image }} resizeMode="cover" />
+      <Image width={width} source={{ uri: image }} resizeMode="cover" />
       <View style={styles.statusContainer}>
         <View>
           <Text type="subTitle1" mb={6}>
@@ -41,6 +42,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ route }) => {
         {title}
       </Text>
       <Text type="subTitle1">{author}</Text>
+      <Spacing size={20} />
     </Content>
   );
 };
@@ -48,11 +50,6 @@ const BookDetail: React.FC<BookDetailProps> = ({ route }) => {
 export default BookDetail;
 
 const styles = StyleSheet.create({
-  image: {
-    width: '100%',
-    height: 500,
-    marginRight: 14,
-  },
   statusContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
