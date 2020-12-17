@@ -5,9 +5,9 @@ import { mock } from '../../mockData';
 
 describe('<BookCard />', () => {
   it('render content', () => {
-    const { getByText } = render(<Component item={mock[0]} />);
+    const { getByText, getAllByText } = render(<Component item={mock[0]} />);
     expect(getByText(mock[0].title)).toBeTruthy();
-    expect(getByText(mock[0].author)).toBeTruthy();
+    expect(getAllByText(mock[0].author).length).toBeGreaterThan(0);
   });
 
   it('render unsold', () => {

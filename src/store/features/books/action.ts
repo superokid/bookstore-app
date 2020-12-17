@@ -21,15 +21,6 @@ export const getBooks = (params: GetBooksParams) => async (dispatch: Dispatch) =
   }
 };
 
-export const getBooksMore = () => async (dispatch: Dispatch) => {
-  try {
-    dispatch({
-      type: GET_BOOKS.success,
-      payload: false,
-    });
-  } catch (err) {}
-};
-
 export const setBookSearch = (search: string) => (dispatch: Dispatch) => {
   try {
     const payload = getMock({ search });

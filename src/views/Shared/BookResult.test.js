@@ -5,8 +5,8 @@ import { mock } from '../../mockData';
 
 describe('<BookResult />', () => {
   it('render content', () => {
-    const { getByText } = render(<Component books={mock} />);
+    const { getByText, getAllByText } = render(<Component books={mock} />);
     expect(getByText(mock[0].title)).toBeTruthy();
-    expect(getByText(mock[0].author)).toBeTruthy();
+    expect(getAllByText(mock[0].author).length).toBeGreaterThan(0);
   });
 });
