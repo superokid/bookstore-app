@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   statusContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 18,
     borderBottomColor: '#ddd',
     borderBottomWidth: 1,

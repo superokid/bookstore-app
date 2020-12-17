@@ -9,13 +9,13 @@ interface Props {
 const TextCurrency: React.FC<Props> = ({ currency, amount }) => {
   return (
     <Text>
-      {currency} {amount}
+      {currency} {new Intl.NumberFormat('en-IN', { currency }).format(amount)}.00
     </Text>
   );
 };
 
 TextCurrency.defaultProps = {
-  currency: '',
+  currency: 'THB',
   amount: 0,
 };
 

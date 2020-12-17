@@ -35,6 +35,6 @@ describe('BookDetail', () => {
     expect(getByText(item.title)).toBeTruthy();
     expect(getByText(item.author)).toBeTruthy();
     expect(getByText(/THB/)).toBeTruthy();
-    expect(getByText(/1072/)).toBeTruthy();
+    expect(getByText(/1.072/)).toBeTruthy();
   });
 });

@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StatusBar, LogBox } from 'react-native';
+import { SafeAreaView, StatusBar, LogBox, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 
 import RouterWrapper from './routes/RouterWrapper';
@@ -21,6 +21,11 @@ LogBox.ignoreLogs([/componentWillReceiveProps/, /componentWillMount/]);
 declare const global: { HermesInternal: null | {} };
 
 const App = () => {
+  if (Platform.OS === 'android') {
+    // only android needs polyfill
+    require('intl');
+    require('intl/locale-data/jsonp/en-IN');
+  }
   return (
     <>
       <Provider store={store}>
