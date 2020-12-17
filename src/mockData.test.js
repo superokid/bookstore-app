@@ -1,4 +1,4 @@
-import { mock, getMock } from './mockData';
+import { mock, getMock, getBookByIdMock, patchBookSalesMock } from './mockData';
 
 describe('getMock', () => {
   it('filter sold', () => {
@@ -48,5 +48,18 @@ describe('getMock', () => {
   it('search nothing', () => {
     const res = getMock({ search: undefined });
     expect(res.length).toBe(mock.length);
+  });
+
+  it('patchBookSalesMock', () => {
+    const id = 1;
+    const val = false;
+    const res = patchBookSalesMock(id, val);
+    expect(res[0].isSold).toBe(false);
+  });
+
+  it('getBookByIdMock', () => {
+    const id = 1;
+    const res = getBookByIdMock(id);
+    expect(res.id).toBe(id);
   });
 });

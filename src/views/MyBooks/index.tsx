@@ -69,7 +69,17 @@ const MyBooks: React.FC<Props> = () => {
               textStyle={styles.textStyle}
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}>
-              <BookResult books={books} />
+              <BookResult
+                books={books.filter((item) => {
+                  // filter to make toogle sales status ux also updated main screen without refetch
+                  if (tab.heading === 'Sold') {
+                    return item.isSold === true;
+                  } else if (tab.heading === 'Unsold') {
+                    return item.isSold === false;
+                  }
+                  return item;
+                })}
+              />
             </Tab>
           );
         })}

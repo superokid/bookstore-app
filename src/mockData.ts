@@ -1,5 +1,5 @@
 import { Image, ImageSourcePropType } from 'react-native';
-import { GetBooksParams, Books } from 'store/features/books';
+import { GetBooksParams, Books, Book } from 'store/features/books';
 
 import img1 from 'assets/images/book/1.png';
 import img2 from 'assets/images/book/2.png';
@@ -16,6 +16,8 @@ export const mock = [
     title: 'The Kinfolk Home: Interiors for Slow Living',
     author: 'William, Nathan',
     isSold: true,
+    price: 1072,
+    currency: 'THB',
   },
   {
     id: 2,
@@ -23,6 +25,8 @@ export const mock = [
     title: 'Wonder: The Art and Practice of Beatrice Blue',
     author: 'by Blue, Beatrice / Diez, Daniel Paniagua (FRW)',
     isSold: true,
+    price: 1002,
+    currency: 'THB',
   },
   {
     id: 3,
@@ -30,6 +34,8 @@ export const mock = [
     title: 'Sketch Every Day',
     author: 'by Gmewald, Simone',
     isSold: false,
+    price: 1003,
+    currency: 'THB',
   },
   {
     id: 4,
@@ -37,6 +43,8 @@ export const mock = [
     title: 'Sketch Every Day',
     author: 'by Gmewald, Simone',
     isSold: false,
+    price: 1004,
+    currency: 'THB',
   },
   {
     id: 5,
@@ -44,6 +52,8 @@ export const mock = [
     title: 'Sketch Every Day',
     author: 'by Gmewald, Simone',
     isSold: false,
+    price: 1005,
+    currency: 'THB',
   },
   {
     id: 6,
@@ -51,6 +61,8 @@ export const mock = [
     title: 'Sketch Every Day',
     author: 'by Gmewald, Simone',
     isSold: false,
+    price: 1006,
+    currency: 'THB',
   },
 ];
 
@@ -71,4 +83,16 @@ export const getMock = (params: GetBooksParams): Books => {
     );
   }
   return mock;
+};
+
+export const patchBookSalesMock = (id: number, val: boolean) => {
+  Object.assign(
+    mock.find((item) => item.id === id),
+    { isSold: val },
+  );
+  return mock;
+};
+
+export const getBookByIdMock = (id: number): Book | null => {
+  return mock.find((item) => item.id === id) || null;
 };

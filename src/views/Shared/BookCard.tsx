@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, View } from 'react-native';
-import { Text } from 'native-base';
-import { Spacing, Label } from 'components';
+import { Spacing, LabelSold } from 'components';
 import { Book } from 'store/features/books';
+import { Text } from 'components';
 
 interface Props {
   item: Book;
@@ -15,11 +15,12 @@ const Card: React.FC<Props> = ({ item, onPress }) => {
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image style={styles.image} source={{ uri: image }} resizeMode="cover" />
       <View style={styles.descContainer}>
-        <Label color={isSold ? '#00dcb5' : '#ff3e72'}>{isSold ? 'Sold' : 'Unsold'}</Label>
+        <LabelSold isSold={isSold} hasBorder />
         <Spacing size={10} />
-        <Text style={styles.title}>{title}</Text>
-        <Spacing size={5} />
-        <Text style={styles.author}>{author}</Text>
+        <Text type="title1" mb={5}>
+          {title}
+        </Text>
+        <Text type="subTitle1">{author}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -42,13 +43,6 @@ const styles = StyleSheet.create({
     width: 120,
     height: 160,
     marginRight: 14,
-  },
-  title: {
-    fontSize: 20,
-  },
-  author: {
-    color: '#aaa',
-    fontSize: 15,
   },
 });
 
